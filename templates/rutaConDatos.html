@@ -1,0 +1,18 @@
+{% extends 'inicio.html' %}
+
+{% block contenido %}
+<h2>Lista de usuarios</h2>
+<ul>
+    {% for nombre in nombres %}
+        <li>{{ nombre }}</li>
+    {% endfor %}
+</ul>
+
+{% if booleanoFalso %}
+    <p>Se imprime esto que está primero</p>
+{% else %}
+    <p>Se imprime esto otro</p>
+{% endif %}
+
+{% endblock contenido %}
+

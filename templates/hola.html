@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>Este es un hola, cuidado</p>
-</body>
-</html>
+{% extends 'inicio.html' %}
+
+{% block primerBloque %}
+<div>Soy lo primero que verás en esta página y aparezco solo en la vista hola</div>
+{% endblock primerBloque %}
+
+{% block contenido %}
+<div>Holaa</div>
+<a href="{% url 'pruebaTemplate' %}">Ir a pruebaTemplate</a>
+{% endblock contenido %}
