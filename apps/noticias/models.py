@@ -1,11 +1,10 @@
 from django.db import models
+from django.utils import timezone
 
-# Create your models here.
 class Noticia(models.Model):
-    titulo = models.CharField(max_length=30)
-    autor = models.CharField(max_length=31)
-    precio = models.DecimalField(max_digits=10,decimal_places=2)
-    contenido = models.TextField(max_length=4000)
+    titulo = models.CharField(max_length=200)
+    contenido = models.TextField()
+    fecha_publicacion = models.DateField(default=timezone.now)
 
     def __str__(self):
         return self.titulo

@@ -1,4 +1,4 @@
-"""proyectofinalprueba URL Configuration
+"""proyectofinal URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from . import views
+from django.contrib.auth import views as auth
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,6 +24,13 @@ urlpatterns = [
     path("pruebatemplate", views.PruebaTemplate, name="pruebaTemplate"),#Si viene url "pruebatemplate" dsps de la barra de la 
                                             #url se ejecuta la función views
     path("rutacondatos", views.RutaConDatos, name="usuarios"),
-    path("noticias", include('apps.noticias.urls'), name="noticias"),
+    path("noticias/", include('apps.noticias.urls'), name="noticias"),
+
+    path("login/", auth.LoginView.as_view(template_name="usuarios/login.html"), name="login"),
+    path("logout/", auth.LogoutView.as_view(), name="logout"),
+    
+    path("usuarios/", include('apps.usuarios.urls'), name="usuarios"),
+
+    
 ]
 
