@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Noticias</title>
+</head>
+<body>
+    <h1>Lista de Noticias</h1>
+    <ul>
+        {% for noticia in noticias %}
+        <li>
+            <strong>{{ noticia.titulo }}</strong> - {{ noticia.fecha_publicacion }}
+            <a href="{% url 'noticias:editar_noticia' noticia.id %}">Editar</a>
+            <a href="{% url 'noticias:eliminar_noticia' noticia.id %}">Eliminar</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

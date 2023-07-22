@@ -1,0 +1,7 @@
+{% extends 'inicio.html' %}
+
+{% block contenido %}
+<div>Este es el pruebaTemplate</div>
+<a href="{% url 'hola' %}">Ir a Hola</a>
+<a href="{% url 'noticias:catalogo' %}">Ir a noticias</a>
+{% endblock contenido %}
