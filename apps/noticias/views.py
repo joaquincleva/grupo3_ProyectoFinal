@@ -1,20 +1,29 @@
 from django.shortcuts import render,get_object_or_404, redirect
-from .forms import NoticiaForm
+from .forms import NoticiaForm, Form_Alta
 from .models import Noticia 
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
 
 # Create your views here.
 def catalogo(request):
     return render(request, 'noticias/catalogo.html')
 
-def crear_noticia(request):
-    if request.method == 'POST':
-        form = NoticiaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('hola')
-    else:
-        form = NoticiaForm()
-    return render(request, 'noticias/crear_noticia.html', {'form': form})
+# def crear_noticia(request):
+#     if request.method == 'POST':
+#         form = NoticiaForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('hola')
+#     else:
+#         form = NoticiaForm()
+#     return render(request, 'noticias/crear_noticia.html', {'form': form})
+
+class crear_noticia(CreateView):
+    model = Noticia
+    form_class=Form_Alta
+    template_name="noticias/crear_noticia.html"
+    success_url=reverse_lazy("hola")
+
 
 def lista_noticias(request):
     noticias = Noticia.objects.order_by('-fecha_publicacion')

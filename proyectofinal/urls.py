@@ -18,6 +18,9 @@ from django.urls import include, path
 from . import views
 from django.contrib.auth import views as auth
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.Hola, name="hola"),
@@ -31,6 +34,7 @@ urlpatterns = [
     
     path("usuarios/", include('apps.usuarios.urls'), name="usuarios"),
 
+
     
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

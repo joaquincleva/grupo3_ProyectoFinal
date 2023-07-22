@@ -8,7 +8,7 @@
     <ul>
         {% for noticia in noticias %}
         <li>
-            <strong>{{ noticia.titulo }}</strong> - {{ noticia.fecha_publicacion }}
+            <strong>{{ noticia.titulo }}</strong> - {{ noticia.fecha_publicacion }}{{ noticia.fecha_modificacion }}
             <a href="{% url 'noticias:editar_noticia' noticia.id %}">Editar</a>
             <a href="{% url 'noticias:eliminar_noticia' noticia.id %}">Eliminar</a>
         </li>
