@@ -1,8 +1,12 @@
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse
 from django.shortcuts import render,get_object_or_404, redirect
 from .forms import NoticiaForm, Form_Alta
 from .models import Noticia 
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
+
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 def catalogo(request):
@@ -18,11 +22,16 @@ def catalogo(request):
 #         form = NoticiaForm()
 #     return render(request, 'noticias/crear_noticia.html', {'form': form})
 
-class crear_noticia(CreateView):
+class crear_noticia(LoginRequiredMixin,CreateView):
     model = Noticia
     form_class=Form_Alta
     template_name="noticias/crear_noticia.html"
-    success_url=reverse_lazy("hola")
+    success_url=reverse_lazy("noticias:lista_noticias")
+    
+    def form_valid(self, form):
+        noti=form.save(commit=False)
+        noti.autor=self.request.user
+        return super(crear_noticia,self).form_valid(form)
 
 
 def lista_noticias(request):

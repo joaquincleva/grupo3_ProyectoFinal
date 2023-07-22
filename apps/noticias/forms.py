@@ -9,4 +9,4 @@ class NoticiaForm(forms.ModelForm):
 class Form_Alta(forms.ModelForm):
     class Meta:
         model = Noticia
-        fields = ('titulo', 'contenido', "autor", "categoria", "imagen")
+        fields = ('titulo', 'contenido', "categoria", "imagen")
