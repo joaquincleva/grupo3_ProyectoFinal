@@ -28,6 +28,7 @@ urlpatterns = [
                                             #url se ejecuta la función views
     path("rutacondatos", views.RutaConDatos, name="usuarios"),
     path("noticias/", include('apps.noticias.urls'), name="noticias"),
+    path("comentarios/", include('apps.comentarios.urls'), name="comentarios"),
 
     path("login/", auth.LoginView.as_view(template_name="usuarios/login.html"), name="login"),
     path("logout/", auth.LogoutView.as_view(), name="logout"),

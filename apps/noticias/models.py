@@ -16,5 +16,8 @@ class Noticia(models.Model):
     categoria = models.ForeignKey(Categoria,default="", on_delete=models.CASCADE)
     imagen = models.ImageField(default="",upload_to="noticias")
 
+    def MisComentarios(self):
+        return self.comentario_set.all()
+
     def __str__(self):
         return self.titulo
