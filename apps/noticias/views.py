@@ -1,9 +1,9 @@
 from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render,get_object_or_404, redirect
-from .forms import NoticiaForm, Form_Alta
-from .models import Noticia 
-from django.views.generic import CreateView
+from .forms import Form_Modificacion, Form_Alta
+from .models import Noticia,Categoria
+from django.views.generic import CreateView, ListView, UpdateView
 from django.urls import reverse_lazy
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -38,19 +38,28 @@ def lista_noticias(request):
     noticias = Noticia.objects.order_by('-fecha_publicacion')
     return render(request, 'noticias/listar_noticias.html', {'noticias': noticias})
 
-def editar_noticia(request, noticia_id):
-    noticia = get_object_or_404(Noticia, pk=noticia_id)
+class Categorias(ListView):
+    model = Categoria
+    template_name = "noticias/listar_categorias.html"
 
-    if request.method == 'POST':
-        form = NoticiaForm(request.POST, instance=noticia)
-        if form.is_valid():
-            form.save()
-            return redirect('hola')
-    else:
-        form = NoticiaForm(instance=noticia)
+# def editar_noticia(request, noticia_id):
+#     noticia = get_object_or_404(Noticia, pk=noticia_id)
 
-    return render(request, 'noticias/editar_noticia.html', {'form': form})
+#     if request.method == 'POST':
+#         form = NoticiaForm(request.POST, instance=noticia)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('hola')
+#     else:
+#         form = NoticiaForm(instance=noticia)
 
+#     return render(request, 'noticias/editar_noticia.html', {'form': form})
+
+class editar_noticia(UpdateView):
+    model = Noticia
+    form_class = Form_Modificacion
+    template_name = 'noticias/editar_noticia.html'
+    success_url = reverse_lazy('noticias:lista_noticias')
 
 def eliminar_noticia(request, noticia_id):
     noticia = get_object_or_404(Noticia, pk=noticia_id)
@@ -60,3 +69,17 @@ def eliminar_noticia(request, noticia_id):
         return redirect('lista_noticias')
 
     return render(request, 'noticias/eliminar_noticia.html', {'noticia': noticia})
+
+def detalleNoticia(request, noticia_id):
+    ctx={}
+    noticia = Noticia.objects.get(id=noticia_id)
+    ctx['noticia']=noticia
+    
+    return render(request, 'noticias/detalle_noticia.html', ctx)
+
+def FiltroCategoria(request, categoria_id):
+    ctx={}
+    categoria = Categoria.objects.get(id=categoria_id)
+    filtrados = Noticia.objects.filter(categoria=categoria)
+    
+    return render(request, 'noticias/listar_noticias.html', {"noticias": filtrados})

@@ -21,6 +21,8 @@
       <a href="{% url 'login' %}">Login</a>
       <a href="{% url 'usuarios:registrar' %}">Registrar</a>
       {% endif %}
+      <a href="{% url 'noticias:lista_noticias' %}">Lista de Noticias</a>
+      <a href="{% url 'noticias:categorias' %}">Categorias</a>
     </head>
 
     {% block primerBloque %}{% endblock primerBloque %}

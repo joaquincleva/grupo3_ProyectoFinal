@@ -10,3 +10,8 @@ class Form_Alta(forms.ModelForm):
     class Meta:
         model = Noticia
         fields = ('titulo', 'contenido', "categoria", "imagen")
+
+class Form_Modificacion(forms.ModelForm):
+    class Meta:
+        model = Noticia
+        fields = ('titulo', 'contenido', "categoria", "imagen")
