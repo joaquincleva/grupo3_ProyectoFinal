@@ -1,26 +1,86 @@
 {% extends 'inicio.html' %} {% load static %} {% block contenido %}
-<div>
-  <img src="{{noticia.imagen.url}}" />
-  <strong>{{ noticia.titulo }}</strong> - {{ noticia.fecha_publicacion }}{{
-  noticia.fecha_modificacion }}
-  <a href="{% url 'noticias:editar_noticia' noticia.id %}">Editar</a>
-  <a href="{% url 'noticias:eliminar_noticia' noticia.id %}">Eliminar</a>
+<div class="container-fluid d-flex justify-content-center p-5">
+  <div class="row d-flex justify-items-center p-5">
+    <img src="{{noticia.imagen.url}}" class="w-50 col-6 d-inline" />
+    <div class="d-flex flex-column col-6">
+      <h2><strong>{{ noticia.titulo }}</strong></h2>
+      <span>{{ noticia.titulo }}</span>
+    </div>
+    <div class="d-flex mt-3 justify-content-center align-items-center">
+      Publicado por {{ noticia.autor }} el: {{ noticia.fecha_publicacion }} (Última modificación:
+      {{noticia.fecha_modificacion }})
+      <a
+        class="btn btn-primary p-1 ms-2"
+        href="{% url 'noticias:editar_noticia' noticia.id %}"
+        >Editar noticia</a
+      >
+      <a
+        class="btn btn-danger p-1 ms-2"
+        href="{% url 'noticias:eliminar_noticia' noticia.id %}"
+        >Eliminar noticia</a
+      >
+    </div>
+  </div>
 </div>
-<div>
-  <h4>Comentarios</h4>
-  {% for comentario in noticia.MisComentarios %} {{comentario.autor}}
-  {{comentario.texto}}
-  <a href="{% url 'comentarios:eliminar_comentario' comentario.pk %}"
-    >Eliminar</a
-  >
-  <a href="{% url 'comentarios:editar_comentario' comentario.pk %}"
-    >Modificar</a
-  >
-  {% endfor %}
-  <form method="POST" action="{% url 'comentarios:agregar' noticia.id %}">
-    {% csrf_token %}
-    <input type="text" name="comentario" />
-    <button type="submit" value="Enviar">Enviar</button>
-  </form>
+
+<div class="row w-100 mb-5 d-flex justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="card shadow-0 border" style="background-color: #f0f2f5">
+      <div class="card-body p-4">
+        <form
+          class="form-outline mb-4 d-flex"
+          method="POST"
+          action="{% url 'comentarios:agregar' noticia.id %}"
+        >
+          {% csrf_token %}
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Escribir comentario..."
+            name="comentario"
+          />
+          <button class="btn btn-primary" type="submit" value="Enviar">
+            Enviar
+          </button>
+        </form>
+        <h4>Comentarios</h4>
+        {% for comentario in noticia.MisComentarios %}
+        <div class="card m-2">
+          <div class="card-body">
+            <div>
+              <p>{{comentario.texto}}</p>
+
+              <div class="d-flex justify-content-between">
+                <div class="d-flex flex-row align-items-center">
+                  <p class="small mb-0 ms-2">{{comentario.autor}}</p>
+                </div>
+                <div class="d-flex flex-row align-items-center">
+                  <a
+                    href="{% url 'comentarios:editar_comentario' comentario.pk %}"
+                    class="small text-muted mb-0"
+                    >Modificar</a
+                  >
+                  <i
+                    class="far fa-thumbs-up ms-2 fa-xs text-black"
+                    style="margin-top: -0.16rem"
+                  ></i>
+                  <a
+                    href="{% url 'comentarios:eliminar_comentario' comentario.pk %}"
+                    class="small text-muted mb-0"
+                    >Eliminar</a
+                  >
+                  <i
+                    class="far fa-thumbs-up ms-2 fa-xs text-black"
+                    style="margin-top: -0.16rem"
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock contenido %}

@@ -1,7 +1,14 @@
 {% extends 'inicio.html' %} {% load static %} {% block contenido %}
-<h1>Crear Noticia</h1>
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Guardar Noticia</button>
-</form>
+<div class="d-flex flex-column align-items-center m-5 justify-content-center h-100">
+  <h4>Crear Noticia</h4>
+  <form
+    action=""
+    class="loginform card p-3 d-flex align-items-center flex-column"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit" class="btn btn-dark text-white">Guardar Noticia</button>
+  </form>
+</div>
 {% endblock contenido %}
