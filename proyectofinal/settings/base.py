@@ -20,8 +20,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Auth
 
-LOGIN_REDIRECT_URL = reverse_lazy("hola")
-LOGOUT_REDIRECT_URL = reverse_lazy("hola")
+LOGIN_REDIRECT_URL = reverse_lazy("noticias:home")
+LOGOUT_REDIRECT_URL = reverse_lazy("noticias:home")
 LOGIN_URL = reverse_lazy("login")
 
 

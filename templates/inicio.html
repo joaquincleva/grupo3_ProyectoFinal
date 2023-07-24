@@ -5,33 +5,80 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/styles.css' %}"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
     />
-    <title>Document</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'img/newspaper.png' %}"
+    />
+    <title>Noticias Grupo 3</title>
   </head>
   <body>
-    <head>
-      {% if user.is_authenticated %} 
-      Hola como estás {{user.username}}
-      <a href="{% url 'logout' %}">Logout</a>
-      <a href="{% url 'noticias:crear_noticia' %}">Crear noticia</a>
-      {% else %}
-      <a href="{% url 'login' %}">Login</a>
-      <a href="{% url 'usuarios:registrar' %}">Registrar</a>
-      {% endif %}
-      <a href="{% url 'noticias:lista_noticias' %}">Lista de Noticias</a>
-      <a href="{% url 'noticias:categorias' %}">Categorias</a>
-    </head>
+    <nav class="navbar navbar-expand-lg bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand text-white" href="{% url 'noticias:home' %}"
+          >Navbar</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% if user.is_authenticated %}
 
-    {% block primerBloque %}{% endblock primerBloque %}
-    <img
-      src="{% static 'img/shadow of the colossus.jpg' %}"
-      alt=""
-      width="300"
-    />
-    <p>Hola</p>
-    {% block contenido %}{% endblock contenido %}
+            <li class="nav-item">
+              <a
+                class="nav-link text-white"
+                href="{% url 'noticias:crear_noticia' %}"
+                >Crear noticia</a
+              >
+            </li>
+            {% endif %}
+            <a
+              class="nav-link text-white"
+              href="{% url 'noticias:lista_noticias' %}"
+              >Lista de Noticias</a
+            >
+            <a
+              class="nav-link text-white"
+              href="{% url 'noticias:categorias' %}"
+              >Categorias</a
+            >
+          </ul>
+        </div>
+        {% if user.is_authenticated %}
+        <span class="nav-link me-3 text-white justify-self-end"
+          >Bienvenido, {{user.username}}</span
+        >
+        <a class="nav-link me-5 text-white" href="{% url 'logout' %}">Salir</a>
+        {% else %}
+        <a class="nav-link me-3 text-white" href="{% url 'login' %}">Ingresar</a>
+        <a
+          class="nav-link me-5 text-white"
+          href="{% url 'usuarios:registrar' %}"
+          >Registrarse</a
+        >
+        {% endif %}
+      </div>
+    </nav>
+
+    {% block contenido %} {% endblock contenido %}
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

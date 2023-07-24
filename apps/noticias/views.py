@@ -61,6 +61,10 @@ class editar_noticia(UpdateView):
     template_name = 'noticias/editar_noticia.html'
     success_url = reverse_lazy('noticias:lista_noticias')
 
+def noticiasDestacadas(request):
+    noticias = Noticia.objects.order_by('-fecha_publicacion')[:5]
+    return render(request, 'noticias/noticias_destacadas.html', {'noticias': noticias})
+
 def eliminar_noticia(request, noticia_id):
     noticia = get_object_or_404(Noticia, pk=noticia_id)
 

@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Crear Noticia</title>
-</head>
-<body>
-    <h1>Crear Noticia</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Guardar Noticia</button>
-    </form>
-</body>
-</html>
+{% extends 'inicio.html' %} {% load static %} {% block contenido %}
+<h1>Crear Noticia</h1>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Guardar Noticia</button>
+</form>
+{% endblock contenido %}

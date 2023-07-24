@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 def Hola(request):
-    return render(request,"hola.html")
+    return render(request,"inicio.html")
 
 def PruebaTemplate(request):
     return render(request,"pruebaTemplate.html")

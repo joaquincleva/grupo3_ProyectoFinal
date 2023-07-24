@@ -1,26 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Lista de Noticias</title>
-</head>
-<body>
-    <div>
-            <img src="{{noticia.imagen.url}}">
-            <strong>{{ noticia.titulo }}</strong> - {{ noticia.fecha_publicacion }}{{ noticia.fecha_modificacion }}
-            <a href="{% url 'noticias:editar_noticia' noticia.id %}">Editar</a>
-            <a href="{% url 'noticias:eliminar_noticia' noticia.id %}">Eliminar</a>
-    </div>
-    <div>
-        <h4>Comentarios</h4>
-        {% for comentario in noticia.MisComentarios %}
-            {{comentario.autor}} {{comentario.texto}}
-            <a href="{% url 'comentarios:eliminar_comentario' comentario.pk %}">Eliminar</a>
-            <a href="{% url 'comentarios:editar_comentario' comentario.pk %}">Modificar</a>
-        {% endfor %}
-        <form method="POST" action="{% url 'comentarios:agregar' noticia.id %}">{% csrf_token %}
-            <input type="text" name="comentario">
-            <button type="submit" value="Enviar">Enviar</button>
-        </form>
-    </div>
-</body>
-</html>
+{% extends 'inicio.html' %} {% load static %} {% block contenido %}
+<div>
+  <img src="{{noticia.imagen.url}}" />
+  <strong>{{ noticia.titulo }}</strong> - {{ noticia.fecha_publicacion }}{{
+  noticia.fecha_modificacion }}
+  <a href="{% url 'noticias:editar_noticia' noticia.id %}">Editar</a>
+  <a href="{% url 'noticias:eliminar_noticia' noticia.id %}">Eliminar</a>
+</div>
+<div>
+  <h4>Comentarios</h4>
+  {% for comentario in noticia.MisComentarios %} {{comentario.autor}}
+  {{comentario.texto}}
+  <a href="{% url 'comentarios:eliminar_comentario' comentario.pk %}"
+    >Eliminar</a
+  >
+  <a href="{% url 'comentarios:editar_comentario' comentario.pk %}"
+    >Modificar</a
+  >
+  {% endfor %}
+  <form method="POST" action="{% url 'comentarios:agregar' noticia.id %}">
+    {% csrf_token %}
+    <input type="text" name="comentario" />
+    <button type="submit" value="Enviar">Enviar</button>
+  </form>
+</div>
+{% endblock contenido %}

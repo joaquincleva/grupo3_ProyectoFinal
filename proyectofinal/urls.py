@@ -23,7 +23,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", views.Hola, name="hola"),
+    path("", include('apps.noticias.urls'), name="home"),
     path("pruebatemplate", views.PruebaTemplate, name="pruebaTemplate"),#Si viene url "pruebatemplate" dsps de la barra de la 
                                             #url se ejecuta la función views
     path("rutacondatos", views.RutaConDatos, name="usuarios"),
