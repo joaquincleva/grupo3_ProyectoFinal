@@ -18,10 +18,10 @@ DATABASES = {
 # # Configuracion de base de datos MySQL
 # DATABASES = {
 #     'default': {
-#         'ENGINE': "django.db.backends.mysql",
-#         'NAME': "grupo3_proyectofinal",
-#         'USER': "root",
-#         'PASSWORD': "Lorito7764567",
-#         'HOST': "localhost",
+#         'ENGINE':
+#         'NAME':
+#         'USER':
+#         'PASSWORD':
+#         'HOST':
 #     }
 # }
