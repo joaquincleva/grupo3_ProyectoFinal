@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-#class diecisieteods(models.Model)
-  #  nom_ods = models.CharField(max_length=80)
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=80)

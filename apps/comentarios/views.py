@@ -20,9 +20,9 @@ class editar_comentario(UpdateView):
     form_class = Form_Modificacion
     template_name = 'comentarios/editar_comentario.html'
     def get_success_url(self):         
-        return reverse_lazy('noticias:detalle_noticias',kwargs={'noticia_id': self.object.noticia.noticia_id})
+        return reverse_lazy('noticias:detalle_noticia',kwargs={'noticia_id': self.object.noticia.pk})
 
 class BorrarComentario(DeleteView):
     model = Comentario
     def get_success_url(self):         
-        return reverse_lazy('noticias:detalle_noticias',kwargs={'noticia_id': self.object.noticia.noticia_id})
+        return reverse_lazy('noticias:detalle_noticia',kwargs={'noticia_id': self.object.noticia.pk})

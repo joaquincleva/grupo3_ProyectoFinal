@@ -59,7 +59,9 @@ class editar_noticia(UpdateView):
     model = Noticia
     form_class = Form_Modificacion
     template_name = 'noticias/editar_noticia.html'
-    success_url = reverse_lazy('noticias:lista_noticias')
+    #success_url = reverse_lazy('noticias:lista_noticias')
+    def get_success_url(self):
+        return reverse_lazy('noticias:detalle_noticia',kwargs={'noticia_id': self.object.pk})
 
 def noticiasDestacadas(request):
     noticias = Noticia.objects.order_by('-fecha_publicacion')[:5]
