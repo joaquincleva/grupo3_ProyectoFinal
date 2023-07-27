@@ -1,0 +1,52 @@
+.cuerpo {
+    background-color: lightgreen;
+}
+.titulo {
+    background-color: lightblue;
+}
+.contenedor {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}/*hay unos bordes que sobresalen y no se tapan y no se como taparlos*/
+.txt {
+    margin-right: 50px;
+    margin-bottom: 100px;
+}
+.h1 {
+    font-size: 70px;
+}
+.h2 {
+    /*acá para acomodar la palabra 'Blog'*/
+}
+.imagen {
+    margin-left: 40px;
+    margin-bottom: 100px;
+}
+.contenedor2 {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.txt2 {
+    margin-right: 50px;
+    margin-bottom: 100px;
+}
+.usuario {
+    /*acá no se que paso pero no me deja mover la imagen del 'usuario'*/
+}
+/*acá también si pueden acomodar las palabras 'login' y 'registrarme' para que no esten tan separadas,se los agradecería mucho*/
+.menu {
+    background-color: black;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+.menu li {
+    font-size: 30px;
+}
+.menu a {
+    color: lightgreen;
+    text-decoration: none;
+}
+/*pdrían ayudarme a como agrandar la barra negra que contiene las categorías?también sería de mucha ayuda*/
