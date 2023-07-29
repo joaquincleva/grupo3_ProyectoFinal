@@ -7,6 +7,8 @@ from django.views.generic import CreateView, ListView, UpdateView
 from django.urls import reverse_lazy
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins    import UserPassesTestMixin
+from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
 def catalogo(request):
@@ -22,11 +24,14 @@ def catalogo(request):
 #         form = NoticiaForm()
 #     return render(request, 'noticias/crear_noticia.html', {'form': form})
 
-class crear_noticia(LoginRequiredMixin,CreateView):
+class crear_noticia(LoginRequiredMixin,UserPassesTestMixin,CreateView):
     model = Noticia
     form_class=Form_Alta
     template_name="noticias/crear_noticia.html"
     success_url=reverse_lazy("noticias:lista_noticias")
+
+    def test_func(self):
+        return self.request.user.is_staff
     
     def form_valid(self, form):
         noti=form.save(commit=False)
@@ -55,18 +60,22 @@ class Categorias(ListView):
 
 #     return render(request, 'noticias/editar_noticia.html', {'form': form})
 
-class editar_noticia(UpdateView):
+class editar_noticia(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model = Noticia
     form_class = Form_Modificacion
     template_name = 'noticias/editar_noticia.html'
-    # success_url = reverse_lazy('noticias:lista_noticias')
-    def get_success_url(self):         
+    #success_url = reverse_lazy('noticias:lista_noticias')
+    def get_success_url(self):
         return reverse_lazy('noticias:detalle_noticia',kwargs={'noticia_id': self.object.pk})
+
+    def test_func(self):
+        return self.request.user.is_staff
 
 def noticiasDestacadas(request):
     noticias = Noticia.objects.order_by('-fecha_publicacion')[:5]
     return render(request, 'noticias/noticias_destacadas.html', {'noticias': noticias})
 
+@staff_member_required
 def eliminar_noticia(request, noticia_id):
     noticia = get_object_or_404(Noticia, pk=noticia_id)
 
