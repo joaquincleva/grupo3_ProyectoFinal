@@ -39,11 +39,13 @@
             {% if user.is_authenticated %}
 
             <li class="nav-item">
+              {% if user.is_staff %}
               <a
                 class="nav-link text-white"
                 href="{% url 'noticias:crear_noticia' %}"
                 >Crear noticia</a
               >
+              {% endif %}
             </li>
             {% endif %}
             <a
@@ -101,6 +103,5 @@
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
-    <a href="mailto:joaquin@gmail.com">Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</a>
   </body>
 </html>
