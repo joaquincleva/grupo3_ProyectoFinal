@@ -2,6 +2,6 @@
 
 {% block contenido %}
     {% for categoria in object_list %}
-        <a href="{% url "noticias:filtro_categoria" categoria.pk %}">{{categoria.nombre}}</a>
+        <a href="{% url 'noticias:filtro_categoria' categoria.pk %}">{{categoria.nombre}}</a>
     {% endfor %}
 {% endblock contenido %}
