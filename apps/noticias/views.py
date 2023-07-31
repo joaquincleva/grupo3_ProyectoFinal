@@ -40,6 +40,36 @@ class crear_noticia(LoginRequiredMixin,UserPassesTestMixin,CreateView):
 
 
 def lista_noticias(request):
+    ctx = {}
+    categorias = Categoria.objects.all()
+    filtro = request.GET.get('fl',None)
+    orden = request.GET.get('orden',None)
+    if filtro:
+        if filtro == 'todas':
+            todas_noticias = Noticia.objects.all()
+        else:
+            cat_filtro = Categoria.objects.filter(nombre = filtro)
+            if cat_filtro:
+                todas_noticias = Noticia.objects.filter(categoria = cat_filtro[0])
+            else:
+                todas_noticias = []
+                ctx['error'] = "No existe la categoria ingresada."
+    else:
+        todas_noticias = Noticia.objects.all()
+
+    if orden:
+        if orden == 'ala':
+            todas_noticias = todas_noticias.order_by('titulo')
+        elif orden == 'ald':
+            todas_noticias = todas_noticias.order_by('-titulo')
+        elif orden == 'ana':
+            todas_noticias = todas_noticias.order_by('titulo')
+        elif orden == 'and':
+            todas_noticias = todas_noticias.order_by('-titulo')
+
+    ctx['object_list'] = todas_noticias
+    ctx['categorias'] = categorias
+
     noticias = Noticia.objects.order_by('-fecha_publicacion')
     return render(request, 'noticias/listar_noticias.html', {'noticias': noticias})
 
