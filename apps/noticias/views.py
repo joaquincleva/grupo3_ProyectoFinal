@@ -63,9 +63,9 @@ def lista_noticias(request):
         elif orden == 'ald':
             todas_noticias = todas_noticias.order_by('-titulo')
         elif orden == 'ana':
-            todas_noticias = todas_noticias.order_by('creado')
+            todas_noticias = todas_noticias.order_by('titulo')
         elif orden == 'and':
-            todas_noticias = todas_noticias.order_by('-creado')
+            todas_noticias = todas_noticias.order_by('-titulo')
 
     ctx['object_list'] = todas_noticias
     ctx['categorias'] = categorias
