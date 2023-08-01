@@ -35,8 +35,11 @@
             <img src="{{noticia.imagen.url}}">
             <a href="{% url 'noticias:detalle_noticia' noticia.id %}" >Ver noticia completa</a>
             <strong>{{ noticia.titulo }}</strong> - {{ noticia.fecha_publicacion }}{{ noticia.fecha_modificacion }}
+
+            {% if user.is_staff %}
             <a href="{% url 'noticias:editar_noticia' noticia.id %}">Editar</a>
             <a href="{% url 'noticias:eliminar_noticia' noticia.id %}">Eliminar</a>
+            {% endif %}
         </li>
         {% endfor %}
     {% endif %}
