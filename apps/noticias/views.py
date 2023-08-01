@@ -63,15 +63,15 @@ def lista_noticias(request):
         elif orden == 'ald':
             todas_noticias = todas_noticias.order_by('-titulo')
         elif orden == 'ana':
-            todas_noticias = todas_noticias.order_by('titulo')
+            todas_noticias = todas_noticias.order_by('fecha_publicacion')
         elif orden == 'and':
-            todas_noticias = todas_noticias.order_by('-titulo')
+            todas_noticias = todas_noticias.order_by('-fecha_publicacion')
 
     ctx['object_list'] = todas_noticias
     ctx['categorias'] = categorias
 
-    noticias = Noticia.objects.order_by('-fecha_publicacion')
-    return render(request, 'noticias/listar_noticias.html', {'noticias': noticias})
+    #noticias = Noticia.objects.order_by('-fecha_publicacion')
+    return render(request, 'noticias/listar_noticias.html', {'noticias': todas_noticias})
 
 class Categorias(ListView):
     model = Categoria

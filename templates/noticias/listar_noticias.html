@@ -5,7 +5,7 @@
      <div class="row mt-3">
       <div class="col-md-3">
         <h4>CATEGORIAS</h4>
-            <a href="?fl=todas">TODAS</a><br>
+          <a href="?fl=todas">TODAS</a><br>
             {% for c in categorias %}
               <a href="?fl={{c.nombre}}">{{c.nombre}}</a><br>
             {% endfor %}
@@ -13,13 +13,13 @@
         <h4>ORDEN</h4>
         <ul>
           <span>ALFABETICO</span>
-          <li><a href="?orden=ala">ASC</a></li>
-          <li><a href="?orden=ald">DSC</a></li>
+          <li><a href="?orden=ala">ASCEND</a></li>
+          <li><a href="?orden=ald">DSCEND</a></li>
         </ul>
         <ul>
           <span>ANTIGUEDAD</span>
-          <li><a href="?orden=ana">ASC</a></li>
-          <li><a href="?orden=and">DSC</a></li>
+          <li><a href="?orden=ana">MAS ANTIGUAS</a></li>
+          <li><a href="?orden=and">MAS RECIENTE</a></li>
         </ul>
     
     </div>
