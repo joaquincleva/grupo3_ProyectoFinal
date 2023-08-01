@@ -3,8 +3,8 @@ from django.shortcuts import render
 def Hola(request):
     return render(request,"inicio.html")
 
-def PruebaTemplate(request):
-    return render(request,"pruebaTemplate.html")
+def Acercade(request):
+    return render(request,"sobre_nosotros.html")
 
 def RutaConDatos(request):
     nombres = ["Pedro","Pica","Piedra"]

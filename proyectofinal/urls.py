@@ -24,8 +24,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include('apps.noticias.urls'), name="home"),
-    path("pruebatemplate", views.PruebaTemplate, name="pruebaTemplate"),#Si viene url "pruebatemplate" dsps de la barra de la 
-                                            #url se ejecuta la función views
     path("rutacondatos", views.RutaConDatos, name="usuarios"),
     path("noticias/", include('apps.noticias.urls'), name="noticias"),
     path("comentarios/", include('apps.comentarios.urls'), name="comentarios"),
@@ -34,6 +32,8 @@ urlpatterns = [
     path("logout/", auth.LogoutView.as_view(), name="logout"),
     
     path("usuarios/", include('apps.usuarios.urls'), name="usuarios"),
+
+    path("acerca_de", views.Acercade, name = "acerca_de"), 
 
 
     
