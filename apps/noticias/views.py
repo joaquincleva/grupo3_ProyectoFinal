@@ -111,7 +111,7 @@ def eliminar_noticia(request, noticia_id):
 
     if request.method == 'POST':
         noticia.delete()
-        return redirect('lista_noticias')
+        return redirect('noticias:lista_noticias')
 
     return render(request, 'noticias/eliminar_noticia.html', {'noticia': noticia})
 
