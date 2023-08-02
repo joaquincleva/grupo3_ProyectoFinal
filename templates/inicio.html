@@ -4,104 +4,213 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
     <link
       rel="icon"
       type="image/x-icon"
       href="{% static 'img/newspaper.png' %}"
     />
+    <script src="{% static 'js/scripts.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}" />
     <title>Noticias Grupo 3</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand text-white" href="{% url 'noticias:home' %}"
-          >Navbar</a
-        >
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            {% if user.is_authenticated %}
+    <!-- Header -->
+    <header class="text-white tchaco-header">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg justify-content-center tchaco-header">
+        <div class="container-fluid">
+          <a class="navbar-brand mr-md-auto" href="#">
+            <img src="{% static 'img/logo17ods.png' %}" alt="" width="200" />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-            <li class="nav-item">
-              {% if user.is_staff %}
+          <div
+            class="collapse navbar-collapse justify-content-center"
+            id="navbarSupportedContent"
+          >
+            <ul class="navbar-nav menu ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Articulos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Galeria</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Acerca de</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contacto</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-link mr-2 text-white">Login</button>
+            <button class="btn btn-outline-secondary">Registrarme</button>
+          </div>
+        </div>
+      </nav>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white" href="{% url 'noticias:home' %}"
+            >Navbar</a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {% if user.is_authenticated %}
+
+              <li class="nav-item">
+                {% if user.is_staff %}
+                <a
+                  class="nav-link text-white"
+                  href="{% url 'noticias:crear_noticia' %}"
+                  >Crear noticia</a
+                >
+                {% endif %}
+              </li>
+              {% endif %}
               <a
                 class="nav-link text-white"
-                href="{% url 'noticias:crear_noticia' %}"
-                >Crear noticia</a
+                href="{% url 'noticias:lista_noticias' %}"
+                >Lista de Noticias</a
               >
-              {% endif %}
-            </li>
-            {% endif %}
-            <a
-              class="nav-link text-white"
-              href="{% url 'noticias:lista_noticias' %}"
-              >Lista de Noticias</a
-            >
-            <a
-              class="nav-link text-white"
-              href="{% url 'noticias:categorias' %}"
-              >Categorias</a>
-            <a
-              class="nav-link text-white"
-              href="{% url 'acerca_de' %}"
-              >Acerca de</a
-            >
-          </ul>
+              <a
+                class="nav-link text-white"
+                href="{% url 'noticias:categorias' %}"
+                >Categorias</a
+              >
+            </ul>
+          </div>
+          {% if user.is_authenticated %}
+          <span class="nav-link me-3 text-white justify-self-end"
+            >Bienvenido, {{user.username}}</span
+          >
+          <a class="nav-link me-5 text-white" href="{% url 'logout' %}"
+            >Salir</a
+          >
+          {% else %}
+          <a class="nav-link me-3 text-white" href="{% url 'login' %}"
+            >Ingresar</a
+          >
+          <a
+            class="nav-link me-5 text-white"
+            href="{% url 'usuarios:registrar' %}"
+            >Registrarse</a
+          >
+          {% endif %}
         </div>
-        {% if user.is_authenticated %}
-        <span class="nav-link me-3 text-white justify-self-end"
-          >Bienvenido, {{user.username}}</span
-        >
-        <a class="nav-link me-5 text-white" href="{% url 'logout' %}">Salir</a>
-        {% else %}
-        <a class="nav-link me-3 text-white" href="{% url 'login' %}"
-          >Ingresar</a
-        >
-        <a
-          class="nav-link me-5 text-white"
-          href="{% url 'usuarios:registrar' %}"
-          >Registrarse</a
-        >
-        {% endif %}
-      </div>
-    </nav>
+      </nav>
 
-    {% block contenido %} {% endblock contenido %}
-
-    <footer
-      class="bg-dark text-center text-lg-start"
-      style="bottom: auto !important"
-    >
-      <!-- Copyright -->
-      <div
-        class="text-center text-white p-3"
-        style="background-color: rgba(0, 0, 0, 0.2)"
-      >
-        © 2023 Copyright:
-        <a
-          class="text-white"
-          href="https://github.com/joaquincleva/grupo3_ProyectoFinal"
-          >Grupo 3 - Comisión 1</a
-        >
+      <div class="container-fluid p-5">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h2 class="title">
+              Chaco Encantador explorando la esencia del turismo Local
+            </h2>
+          </div>
+        </div>
       </div>
-      <!-- Copyright -->
+    </header>
+    <section class="py-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            {% block contenido %} {% endblock contenido %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img
+            src="{% static 'img/logo17ods.png' %}"
+            alt="Avatar"
+            style="width: 300px; height: 300px"
+          />
+        </div>
+        <div class="flip-card-back">
+          <h1>John Doe</h1>
+          <p>Architect & Engineer</p>
+          <p>We love that guy</p>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footerPersonal py-4 w-100">
+      <div class="row d-flex w-100 justify-content-around">
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <span class="text-white text-center">Grupo 3 Informatorio 2023</span>
+        </div>
+        <div class="col-md-4 mt-2 mb-2 text-center">
+          <img src="{% static 'img/logo17ods.png' %}" width="125" alt="" />
+        </div>
+        <div
+          class="col-md-4 d-flex gap-4 justify-content-center align-items-center"
+        >
+          <span
+            ><a class="d-inline" href="google.com.ar"
+              ><img src="{% static 'img/google.png' %}" width="30" alt="" /></a
+          ></span>
+          <span
+            ><a class="d-block" href="facebook.com"
+              ><img
+                src="{% static 'img/facebook.png' %}"
+                width="30"
+                alt="" /></a
+          ></span>
+          <span
+            ><a class="d-block" href="instagram.com"
+              ><img
+                src="{% static 'img/instagram.png' %}"
+                width="30"
+                alt="" /></a
+          ></span>
+        </div>
+      </div>
     </footer>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
