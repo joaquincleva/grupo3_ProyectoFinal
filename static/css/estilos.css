@@ -40,12 +40,10 @@ body::-webkit-scrollbar {
   bottom: 0 !important;
 }
 
-
 .flip-card {
   background-color: transparent !important;
   width: 300px !important;
-  height: 200px !important;
-  border: 1px solid #f1f1f1 !important;
+  height: 300px !important;
   perspective: 1000px !important; /* Remove this if you don't want the 3D effect */
 }
 
@@ -65,7 +63,8 @@ body::-webkit-scrollbar {
 }
 
 /* Position the front and back side */
-.flip-card-front, .flip-card-back {
+.flip-card-front,
+.flip-card-back {
   position: absolute !important;
   width: 100% !important;
   height: 100% !important;
@@ -81,7 +80,27 @@ body::-webkit-scrollbar {
 
 /* Style the back side */
 .flip-card-back {
-  background-color: dodgerblue !important;
+  background-color: #00000077 !important;
   color: white !important;
   transform: rotateY(180deg) !important;
+}
+
+.category-link:hover {
+  color: grey !important;
+}
+
+.item-link {
+  text-decoration: none;
+}
+
+.item-link:hover {
+  background-color: grey;
+}
+
+.custom-toggler.navbar-toggler {
+  border-color: lightgreen;
+}
+
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 128, 0, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
 }

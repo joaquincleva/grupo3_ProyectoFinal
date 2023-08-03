@@ -10,8 +10,8 @@
       rel="stylesheet"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
-    />
-
+      />
+      <link rel="stylesheet" href="{% static 'css/gallery.css' %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,10 +20,28 @@
     />
 
     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"
+      async
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css"
+      async
+    ></script>
+
+    <link
       rel="icon"
       type="image/x-icon"
       href="{% static 'img/newspaper.png' %}"
     />
+
     <script src="{% static 'js/scripts.js' %}"></script>
 
     <link rel="stylesheet" href="{% static 'css/estilos.css' %}" />
@@ -35,11 +53,11 @@
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg justify-content-center tchaco-header">
         <div class="container-fluid">
-          <a class="navbar-brand mr-md-auto" href="#">
+          <a class="navbar-brand mr-md-auto" href="{% url 'noticias:home' %}">
             <img src="{% static 'img/logo17ods.png' %}" alt="" width="200" />
           </a>
           <button
-            class="navbar-toggler"
+            class="navbar-toggler text-success bg-dark custom-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -47,43 +65,100 @@
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon text-white"></span>
           </button>
 
           <div
             class="collapse navbar-collapse justify-content-center"
             id="navbarSupportedContent"
           >
-            <ul class="navbar-nav menu ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Inicio</a>
+            <ul class="navbar-nav menu ml-auto align-content-center">
+              <li class="nav-link">
+                <a
+                  class="nav-link text-white p-2 item-link rounded"
+                  href="{% url 'noticias:home' %}"
+                  >Inicio</a
+                >
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Articulos</a>
+              <li class="nav-link d-inline">
+                <a
+                  class="nav-link text-white p-2 item-link rounded"
+                  href="{% url 'noticias:lista_noticias' %}"
+                  >Lista de Noticias</a
+                >
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Galeria</a>
+              <li class="nav-link">
+                <a
+                  class="nav-link text-white p-2 item-link rounded"
+                  href="{% url 'noticias:categorias' %}"
+                  >Objetivos</a
+                >
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Acerca de</a>
+              <li class="nav-link">
+                <a
+                  class="nav-link text-white p-2 item-link rounded"
+                  href="{% url 'noticias:noticias_imagenes' %}"
+                  >Galería</a
+                >
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contacto</a>
+              <li class="nav-link">
+                <a class="nav-link text-white p-2 item-link rounded" href="#"
+                  >Sobre nosotros</a
+                >
               </li>
+              <li class="nav-link">
+                <a class="nav-link text-white p-2 item-link rounded" href="#"
+                  >Contacto</a
+                >
+              </li>
+              {% if user.is_authenticated %} {% if user.is_staff %}
+              <li class="nav-link">
+                <a
+                  class="nav-item text-white btn btn-success"
+                  href="{% url 'noticias:crear_noticia' %}"
+                  >Crear noticia</a
+                >
+              </li>
+              {% endif %} {% endif %}
             </ul>
           </div>
 
           <div class="d-flex justify-content-end">
-            <button class="btn btn-link mr-2 text-white">Login</button>
-            <button class="btn btn-outline-secondary">Registrarme</button>
+            {% if user.is_authenticated %}
+            <li class="nav-link">
+              <span class="nav-item me-2 text-white btn text-decoration-none"
+                >Bienvenido, {{user.username}}</span
+              >
+            </li>
+
+            <li class="nav-link">
+              <a
+                class="nav-item text-white fw-bold btn btn-danger me-3"
+                href="{% url 'logout' %}"
+                >Salir</a
+              >
+            </li>
+            {% else %}
+            <li class="nav-link">
+              <a
+                class="nav-item me-2 text-white btn btn-primary"
+                href="{% url 'login' %}"
+                >Ingresar</a
+              >
+            </li>
+            <li class="nav-link">
+              <a
+                class="nav-item me-2 text-white btn btn-secondary"
+                href="{% url 'usuarios:registrar' %}"
+                >Registrarse</a
+              >
+            </li>
+            {% endif %}
           </div>
         </div>
       </nav>
       <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-          <a class="navbar-brand text-white" href="{% url 'noticias:home' %}"
-            >Navbar</a
-          >
           <button
             class="navbar-toggler"
             type="button"
@@ -95,88 +170,35 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              {% if user.is_authenticated %}
-
-              <li class="nav-item">
-                {% if user.is_staff %}
-                <a
-                  class="nav-link text-white"
-                  href="{% url 'noticias:crear_noticia' %}"
-                  >Crear noticia</a
-                >
-                {% endif %}
-              </li>
-              {% endif %}
-              <a
-                class="nav-link text-white"
-                href="{% url 'noticias:lista_noticias' %}"
-                >Lista de Noticias</a
-              >
-              <a
-                class="nav-link text-white"
-                href="{% url 'noticias:categorias' %}"
-                >Categorias</a
-              >
-            </ul>
-          </div>
-          {% if user.is_authenticated %}
-          <span class="nav-link me-3 text-white justify-self-end"
-            >Bienvenido, {{user.username}}</span
-          >
-          <a class="nav-link me-5 text-white" href="{% url 'logout' %}"
-            >Salir</a
-          >
-          {% else %}
-          <a class="nav-link me-3 text-white" href="{% url 'login' %}"
-            >Ingresar</a
-          >
-          <a
-            class="nav-link me-5 text-white"
-            href="{% url 'usuarios:registrar' %}"
-            >Registrarse</a
-          >
-          {% endif %}
+          <div
+            class="collapse navbar-collapse"
+            id="navbarSupportedContent"
+          ></div>
         </div>
       </nav>
-
-      <div class="container-fluid p-5">
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <h2 class="title">
-              Chaco Encantador explorando la esencia del turismo Local
-            </h2>
-          </div>
-        </div>
-      </div>
     </header>
-    <section class="py-4">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+    <section class="pb-4 w-100 pb-5 mb-5" style="background-color: lightgrey">
+      <div class="w-100 pb-5 mb-5 p-4">
+        <div class="row d-flex w-100">
+          <!-- Contenido Principal -->
+          <div class="col-12 p-2">
             {% block contenido %} {% endblock contenido %}
           </div>
+          <!-- Sidebar -->
         </div>
       </div>
     </section>
-
-    <div class="flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <img
-            src="{% static 'img/logo17ods.png' %}"
-            alt="Avatar"
-            style="width: 300px; height: 300px"
-          />
-        </div>
-        <div class="flip-card-back">
-          <h1>John Doe</h1>
-          <p>Architect & Engineer</p>
-          <p>We love that guy</p>
+    <!-- Contenido -->
+    <!-- <section class="py-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            
+          </div>
         </div>
       </div>
-    </div>
+    </section> -->
+
     <!-- Footer -->
     <footer class="footerPersonal py-4 w-100">
       <div class="row d-flex w-100 justify-content-around">
@@ -194,14 +216,18 @@
               ><img src="{% static 'img/google.png' %}" width="30" alt="" /></a
           ></span>
           <span
-            ><a class="d-block" href="facebook.com"
+            ><a
+              class="d-block"
+              href="https://www.facebook.com/nacionesunidas/?locale=es_LA"
               ><img
                 src="{% static 'img/facebook.png' %}"
                 width="30"
                 alt="" /></a
           ></span>
           <span
-            ><a class="d-block" href="instagram.com"
+            ><a
+              class="d-block"
+              href="https://www.instagram.com/nacionesunidas/?hl=es"
               ><img
                 src="{% static 'img/instagram.png' %}"
                 width="30"
@@ -216,5 +242,11 @@
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      baguetteBox.run(".gallery", {
+        animation: "slideIn",
+      });
+    </script>
   </body>
 </html>

@@ -1,18 +1,57 @@
-{% extends 'inicio.html' %}
-{% load static %}
-{% block contenido %}
-    <h1>Noticias Destacadas</h1>
-    <ul>
-        {% for noticia in noticias %}
-        <li>
-            <img src="{{noticia.imagen.url}}">
-            <a href="{% url 'noticias:detalle_noticia' noticia.id %}" >Ver noticia completa</a>
-            <strong>{{ noticia.titulo }}</strong> - {{ noticia.fecha_publicacion }}{{ noticia.fecha_modificacion }}
-            {% if user.is_staff %}
-            <a href="{% url 'noticias:editar_noticia' noticia.id %}">Editar</a>
-            <a href="{% url 'noticias:eliminar_noticia' noticia.id %}">Eliminar</a>
-            {% endif %}
-        </li>
-        {% endfor %}
-    </ul>
+{% extends 'inicio.html' %} {% load static %} {% block contenido %}
+<div class="row d-flex">
+    <img class="d-none d-md-block col-4" src="https://www.medgon.com/wp-content/uploads/2019/09/6f3c7c445e9273c42cd960dcf7d7e695.png" alt="" width="150">
+  <div class="col-7 d-flex flex-column justify-content-center">
+    <h1 class="text-center fw-bold">¡17 objetivos para transformar nuestro mundo!</h1>
+    <p class="w-100 text-center fs-5">
+      Los Objetivos de Desarrollo Sostenible (ODS) constituyen un llamamiento
+      universal a la acción para poner fin a la pobreza, proteger el planeta y
+      mejorar las vidas y las perspectivas de las personas en todo el mundo. En
+      2015, todos los Estados Miembros de las Naciones Unidas aprobaron 17
+      Objetivos como parte de la Agenda 2030 para el Desarrollo Sostenible, en
+      la cual se establece un plan para alcanzar los Objetivos en 15 años.
+      ¡Conoce los 17 ODS y sé parte del cambio!
+    </p>
+  </div>
+</div>
+<h1 class="text-center fw-bold">Últimas Noticias</h1>
+<div class="col-12 w-100 col-md-9 mb-5 mx-4 w-100 pe-5">
+  <div class="row d-flex">
+    {% for noticia in noticias %}
+    <div class="col-12 col-md-6 mt-3">
+      <div class="d-flex bg-white col-12 ms-3">
+        <img src="{{noticia.imagen.url}}" class="col-6" height="250px" />
+        <div class="d-flex flex-column justify-content-between p-3 col-6">
+          <span class="fs-6 text-secondary"
+            >{{ noticia.fecha_modificacion }}</span
+          >
+          <h4>{{ noticia.titulo }}</h4>
+          <p class="fs-6 text-secondary">
+            {{ noticia.contenido | truncatechars:80 }}
+          </p>
+          <a
+            class="text-success"
+            href="{% url 'noticias:detalle_noticia' noticia.id %}"
+            >Leer más...</a
+          >
+          {% if user.is_staff %}
+          <div class="d-flex justify-content-end">
+            <a
+              class="text-primary me-2 text-decoration-none"
+              href="{% url 'noticias:editar_noticia' noticia.id %}"
+              >Editar</a
+            >
+            <a
+              class="text-danger text-decoration-none"
+              href="{% url 'noticias:eliminar_noticia' noticia.id %}"
+              >Eliminar</a
+            >
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
 {% endblock contenido %}
