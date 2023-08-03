@@ -1,10 +1,23 @@
-{% extends 'inicio.html' %}
-{% load static %}
-{% block contenido %}
-    <h1>Eliminar Noticia</h1>
-    <p>¿Estás seguro de que deseas eliminar la noticia "{{ noticia.titulo }}"?</p>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Confirmar Eliminación</button>
-    </form>
-    {% endblock contenido %}
+{% extends 'inicio.html' %} {% load static %} {% block contenido %}
+<main role="main">
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-md-10 mx-auto mb-5">
+        <h1 class="fw-bold text-center">Eliminar Noticia</h1>
+        <p class="fw-semibold text-center">
+          ¿Estás seguro de que deseas eliminar la noticia "{{ noticia.titulo}}"?
+        </p>
+        <form
+          method="post"
+          class="loginform p-4 d-flex align-items-center flex-column text-center"
+        >
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">
+            Borrar Noticia
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock contenido %}

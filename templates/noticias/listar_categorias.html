@@ -10,11 +10,11 @@
         style="width: 300px; height: 300px; object-fit: cover;"
       />
     </div>
-    <div class="flip-card-back d-flex flex-column justify-content-around">
-      <a href="{% url 'noticias:filtro_categoria' categoria.pk %}" class="fs-4 text-white fw-semibold category-link d-inline p-2 bg-dark" style="text-decoration: none;">
+    <div class="flip-card-back d-flex flex-column justify-content-around w-100" style="background-color: #747d8c !important">
+      <a href="{% url 'noticias:filtro_categoria' categoria.pk %}" class="fs-4 text-white fw-semibold category-link d-inline" style="text-decoration: none; background-color: #2f3542;">
         {{ categoria.nombre }}
       </a>
-      <p class="fw-semibold py-3" style="background-color: dimgrey;">{{ categoria.description | truncatechars:171 }}</p>
+      <p class="fw-semibold py-3" >{{ categoria.description | truncatechars:171 }}</p>
     </div>
   </div>
 </div>

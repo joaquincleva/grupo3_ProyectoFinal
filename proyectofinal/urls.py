@@ -34,6 +34,7 @@ urlpatterns = [
     path("usuarios/", include('apps.usuarios.urls'), name="usuarios"),
 
     path("acerca_de", views.Acercade, name = "acerca_de"), 
+    path("contacto", views.Contacto, name = "contacto"), 
 
 
     

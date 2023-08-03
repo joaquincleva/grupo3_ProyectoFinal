@@ -1,0 +1,57 @@
+{% extends 'inicio.html' %} {% load static %} {% block contenido %}
+
+<div class="container text-center">
+  <h1 class="mt-5">Contacto</h1>
+  <p class="lead">
+    Si tienes alguna pregunta, comentario o simplemente deseas ponerte en
+    contacto con nosotros, por favor utiliza el siguiente formulario. Estaremos
+    encantados de escucharte.
+  </p>
+  {% if messages %}
+  <div
+    class="alert alert-success alert-dismissible fade show mt-4"
+    role="alert"
+  >
+    {% for message in messages %} {{ message }} {% endfor %}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  {% endif %}
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3 text-start">
+      <label for="nombre" class="form-label">Nombre:</label>
+      <input type="text" name="nombre" class="form-control" required />
+    </div>
+
+    <div class="mb-3 text-start">
+      <label for="asunto" class="form-label">Asunto:</label>
+      <input type="text" name="asunto" class="form-control" required />
+    </div>
+
+    <div class="mb-3 text-start">
+      <label for="tipo_consulta" class="form-label">Tipo de consulta:</label>
+      <select name="tipo_consulta" class="form-control">
+        <option value="pregunta_general">Pregunta general</option>
+        <option value="sugerencia">Sugerencia</option>
+        <option value="reportar_problema">Reportar un problema</option>
+      </select>
+    </div>
+
+    <div class="mb-3 text-start">
+      <label for="mensaje" class="form-label">Mensaje:</label>
+      <textarea name="mensaje" class="form-control" required></textarea>
+    </div>
+    <div class="d-grid">
+      <button type="submit" class="btn btn-dark">
+        Enviar correo electronico
+      </button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

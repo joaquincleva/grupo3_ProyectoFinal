@@ -2,18 +2,17 @@
 <section class="py-4 mb-5">
   <div class="container mb-5">
     <div class="row">
-      <div class="col-md-12">
-        <h2 class="galleryTitle text-center fw-bold">Galería de Imágenes</h2>
-        <p class="text-center">Nuestra selección de imágenes</p>
-        <div class="row gallery d-flex justify-content-center w-100 p-2 gap-2">
+      <div class="row col-md-12">
+        <div class="row gallery d-flex justify-content-center w-100">
           {% for noticias in object_list %}
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xxl-2 mx-4 my-2 gallery-img border-0">
-            <a href="{{ noticias.imagen.url }}" data-baguettebox="gallery">
+          <div class="col-12 col-sm-4 col-md-3 col-lg-2 my-2 gallery-img border-0">
+            <a href="{{ noticias.imagen.url }}" class="rounded-4" data-baguettebox="gallery">
               <img
-                class=""
+                style="object-fit:cover !important"
                 height="200px"
-                width="250px"
+                width="100%"
                 src="{{ noticias.imagen.url }}"
+                class="rounded-4"
               />
             </a>
           </div>
