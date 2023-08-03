@@ -3,7 +3,9 @@ from django.contrib.auth.models import User
 
 
 class Categoria(models.Model):
-    nombre = models.CharField(max_length=80)
+    nombre = models.CharField(max_length=80,default="")
+    description = models.CharField(max_length=400,default="")
+    imagen = models.CharField(max_length=2000,default="")
     
     def __str__(self):
         return self.nombre

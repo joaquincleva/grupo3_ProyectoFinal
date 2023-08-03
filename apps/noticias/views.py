@@ -1,6 +1,7 @@
 from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render,get_object_or_404, redirect
+from django.db.models import Q
 from .forms import Form_Modificacion, Form_Alta
 from .models import Noticia,Categoria
 from django.views.generic import CreateView, ListView, UpdateView
@@ -42,20 +43,25 @@ class crear_noticia(LoginRequiredMixin,UserPassesTestMixin,CreateView):
 def lista_noticias(request):
     ctx = {}
     categorias = Categoria.objects.all()
-    filtro = request.GET.get('fl',None)
-    orden = request.GET.get('orden',None)
+    filtro = request.GET.get('fl', None)
+    orden = request.GET.get('orden', None)
+    query = request.GET.get('q', None)
+
     if filtro:
         if filtro == 'todas':
             todas_noticias = Noticia.objects.all()
         else:
-            cat_filtro = Categoria.objects.filter(nombre = filtro)
+            cat_filtro = Categoria.objects.filter(nombre=filtro)
             if cat_filtro:
-                todas_noticias = Noticia.objects.filter(categoria = cat_filtro[0])
+                todas_noticias = Noticia.objects.filter(categoria=cat_filtro[0])
             else:
                 todas_noticias = []
                 ctx['error'] = "No existe la categoria ingresada."
     else:
         todas_noticias = Noticia.objects.all()
+
+    if query:
+        todas_noticias = todas_noticias.filter(Q(titulo__icontains=query) | Q(contenido__icontains=query))
 
     if orden:
         if orden == 'ala':
@@ -70,7 +76,6 @@ def lista_noticias(request):
     ctx['object_list'] = todas_noticias
     ctx['categorias'] = categorias
 
-    #noticias = Noticia.objects.order_by('-fecha_publicacion')
     return render(request, 'noticias/listar_noticias.html', {'noticias': todas_noticias})
 
 class Categorias(ListView):
@@ -102,7 +107,7 @@ class editar_noticia(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
         return self.request.user.is_staff
 
 def noticiasDestacadas(request):
-    noticias = Noticia.objects.order_by('-fecha_publicacion')[:5]
+    noticias = Noticia.objects.order_by('-fecha_publicacion')[:8]
     return render(request, 'noticias/noticias_destacadas.html', {'noticias': noticias})
 
 @staff_member_required
@@ -121,6 +126,10 @@ def detalleNoticia(request, noticia_id):
     ctx['noticia']=noticia
     
     return render(request, 'noticias/detalle_noticia.html', ctx)
+
+def noticiasImagenes(request):
+    todas_noticias = Noticia.objects.all()
+    return render(request, 'noticias/noticias_imagenes.html', {'object_list': todas_noticias})
 
 def FiltroCategoria(request, categoria_id):
     ctx={}
