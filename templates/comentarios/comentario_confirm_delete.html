@@ -1,11 +1,23 @@
-{% extends 'inicio.html' %}
-
-{% block contenido %}
-
-    <form method="post">{% csrf_token %}
-        <p>Estás seguro que deseas eliminar: {{ object }}?</p>
-        {{form}}
-        <input type="submit" value="Confirmar">
-    </form>
-
+{% extends 'inicio.html' %} {% block contenido %}
+<main role="main">
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-md-10 mx-auto mb-5">
+        <h1 class="fw-bold text-center">Eliminar Comentario</h1>
+        <form
+          method="post"
+          class="loginform p-4 d-flex align-items-center flex-column text-center"
+        >
+          {% csrf_token %}
+          <p class="fw-medium col-12 col-md-8">Estás seguro que deseas eliminar el comentario "<span class="fw-bold">{{ object.texto }}</span>" en la noticia "<span class="fw-bold">{{ object.noticia }}</span>"?</p>
+          
+          {{form}}
+          <button type="submit" class="btn btn-danger">
+            Borrar Comentario
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
 {% endblock contenido %}

@@ -10,8 +10,8 @@
       rel="stylesheet"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
-      />
-      <link rel="stylesheet" href="{% static 'css/gallery.css' %}" />
+    />
+    <link rel="stylesheet" href="{% static 'css/gallery.css' %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -102,12 +102,12 @@
                 >
               </li>
               <li class="nav-link">
-                <a class="nav-link text-white p-2 item-link rounded" href="#"
+                <a class="nav-link text-white p-2 item-link rounded" href="{% url 'acerca_de' %}"
                   >Sobre nosotros</a
                 >
               </li>
               <li class="nav-link">
-                <a class="nav-link text-white p-2 item-link rounded" href="#"
+                <a class="nav-link text-white p-2 item-link rounded" href="{% url 'contacto' %}"
                   >Contacto</a
                 >
               </li>
@@ -177,7 +177,7 @@
         </div>
       </nav>
     </header>
-    <section class="pb-4 w-100 pb-5 mb-5" style="background-color: lightgrey">
+    <section class="pb-4 w-100 pb-5 mb-5" style="background-color: white">
       <div class="w-100 pb-5 mb-5 p-4">
         <div class="row d-flex w-100">
           <!-- Contenido Principal -->
@@ -212,7 +212,9 @@
           class="col-md-4 d-flex gap-4 justify-content-center align-items-center"
         >
           <span
-            ><a class="d-inline" href="google.com.ar"
+            ><a
+              class="d-inline"
+              href="https://www.google.com.ar/search?q=onu&sxsrf=AB5stBg1YKgtMwuRsirdQTg2O5GSpWkMzA%3A1691046423362&source=hp&ei=F1LLZMChFOvN1sQP5c2m4AY&iflsig=AD69kcEAAAAAZMtgJ50Qo24K4PXYLcsHAeRglBY7RrHG&ved=0ahUKEwiAifLq9r-AAxXrppUCHeWmCWwQ4dUDCAk&uact=5&oq=onu&gs_lp=Egdnd3Mtd2l6IgNvbnUyBxAjGIoFGCcyBxAjGIoFGCcyCxAuGIAEGLEDGIMBMgQQABgDMggQABiABBixAzILEC4YgAQYsQMYgwEyCBAAGIAEGLEDMggQABiABBixAzILEAAYgAQYsQMYgwEyERAuGIAEGLEDGIMBGMcBGNEDSLgaUIgFWO4PcAN4AJABAJgBX6ABuQOqAQE1uAEDyAEA-AEBqAIKwgIHECMY6gIYJ8ICDBAjGIoFGBMYgAQYJ8ICCxAuGIoFGLEDGIMBwgIIEC4YgAQYsQPCAg0QABiABBixAxiDARgKwgIHEAAYgAQYCsICBRAAGIAEwgIREC4YigUYsQMYgwEYxwEY0QM&sclient=gws-wiz"
               ><img src="{% static 'img/google.png' %}" width="30" alt="" /></a
           ></span>
           <span

@@ -1,14 +1,42 @@
 {% extends 'inicio.html' %} {% load static %} {% block contenido %}
-<div class="d-flex flex-column align-items-center m-5 justify-content-center h-100">
-  <h4>Crear Noticia</h4>
-  <form
-    action=""
-    class="loginform card p-3 d-flex align-items-center flex-column"
-    method="post"
-    enctype="multipart/form-data"
-  >
-    {% csrf_token %} {{ form.as_p }}
-    <button type="submit" class="btn btn-dark text-white">Guardar Noticia</button>
-  </form>
+<main role="main">
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-md-10 mx-auto mb-5">
+    <form
+      action=""
+      class="loginform p-4 card d-flex align-items-center flex-column text-center"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %}
+      <h3 class="mb-4">Crear Noticia</h3>
+      <div class="form-group m-2">
+        <label
+          for="{{ form.titulo.id_for_label }}"
+          class="form-label text-center fw-bold"
+          >Título</label
+        >
+        {{ form.titulo }}
+      </div>
+      <div class="d-flex flex-column form-group my-2 w-100">
+        <label class="fw-bold" for="{{ form.contenido.id_for_label }}">Contenido</label>
+        {{ form.contenido }}
+      </div>
+      <div class="form-group m-2 d-flex flex-column">
+        <label class="fw-bold" for="{{ form.imagen.id_for_label }}">Imagen</label>
+        {{ form.imagen }}
+      </div>
+      <div class="form-group m-2 d-flex flex-column">
+        <label class="fw-bold" for="{{ form.categoria.id_for_label }}">Categoría</label>
+        {{ form.categoria }}
+      </div>
+      <button type="submit" class="btn btn-dark text-white">
+        Guardar Noticia
+      </button>
+    </form>
+  </div>
 </div>
+</div>
+</main>
 {% endblock contenido %}

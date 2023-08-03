@@ -1,58 +1,114 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Sobre Nosotros</title>
-    <meta charset="utf-8" />
-  </head>
-  <body style="background-color: lightblue">
-    <div>
-      <div>
-        <!--acá pueden poner el título de que tenga nuestra página web-->
+{% extends 'inicio.html' %} {% load static %} {% block contenido %}
+<div class="d-flex flex-column align-items-center align-content-center">
+  <h1 class="w-75 text-center fw-semibold my-5" style="font-family: Poppins;">Grupo 3 del Informatorio</h1>
+  <p class="w-75 fs-5 px-5 mx-5">
+    Somos un equipo de entusiastas de la programación y, aunque es la primera
+    vez que trabajamos juntos, hemos demostrado un gran espíritu de colaboración
+    y determinación para enfrentar este emocionante proyecto. Nuestro objetivo
+    era crear nuestra primera página web, y aunque nos enfrentamos a algunos
+    desafíos, nunca nos rendimos. La mayoría de nosotros somos nuevos en el
+    mundo de la programación, pero eso no nos detuvo. Cada uno aportó sus
+    habilidades únicas y conocimientos, lo que enriqueció nuestro trabajo y nos
+    permitió superar obstáculos. <br class="my-3" /> <br class="my-3" />
+    A medida que avanzábamos en el proyecto, descubrimos que, a pesar de
+    nuestras diferencias, todos compartimos una pasión por aprender y mejorar.
+    Aprendimos a utilizar nuevas herramientas y tecnologías, a escribir código,
+    a diseñar la interfaz y a poner en práctica conceptos de diseño web. Cada
+    línea de código escrita y cada pequeña victoria nos acercó más a nuestra
+    meta de tener nuestra primera página web en funcionamiento. Ahora, nos
+    sentimos más confiados y entusiasmados que nunca por seguir aprendiendo y
+    mejorando nuestras habilidades de programación. Nos damos cuenta de que ser
+    programadores es un viaje continuo de aprendizaje, y estamos emocionados por
+    lo que el futuro nos depara. Agradecemos esta oportunidad de trabajar juntos
+    como equipo y estamos seguros de que seguiremos creciendo y desarrollándonos
+    en el apasionante mundo de la programación. <br class="my-3" /> <br class="my-3" />
+    ¡Estamos ansiosos por los próximos desafíos y proyectos que nos esperan!
+  </p>
+  <br />
+  <h3 class="fw-medium my-3 pb-4">Para contactarnos, dejamos nuestras redes sociales:</h3>
+  <div class="d-flex justify-content-center w-100 gap-3">
+    <div class="card rounded-3 col-12 col-md-4 col-lg-2 p-1">
+      <div class="rounded-3 text-center d-flex flex-column align-content-center align-items-center">
+        <div class="card-img-top mt-3 pt-1">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKgLulrUZZHRc7WE3JPkBC06PatyPSpm51PA&usqp=CAU"
+            width="150"
+            alt=""
+            class="justify-self-center rounded-circle"
+          />
+        </div>
+        <div class="card-body">
+          <hr>
+          <a href="mailto:ferreyralautaro2003@gmail.com" style="cursor: pointer;text-decoration: none; color:black; font-weight: bold !important" class="fw-medium px-2">Lautaro Ferreyra</a>
+          <hr class="w-100">
+          <a href="https://github.com/Lautaro2003"><img src="https://cdn-icons-png.flaticon.com/256/25/25231.png" width="30"></a>
+          <a class="ms-3 me-2 pe-1" href="https://www.facebook.com/lautaro.ferreyra.779857"><img src="https://cdn.iconscout.com/icon/free/png-256/free-facebook-logo-2019-1597680-1350125.png" width="30"></a>
+          <a href="https://www.linkedin.com/in/lautaroferreyra/?originalSubdomain=ar"><img src="https://cdn3.iconfinder.com/data/icons/sociocons/256/linkedin-sociocon.png" width="37"></a>
+        </div>
       </div>
     </div>
-    <div>
-      <h1>Somos el grupo 3:</h1>
-      <h3>
-        Somos un equipo de entusiastas de la programación, y aunque es la
-        primera vez que trabajamos juntos, hemos demostrado un gran espíritu de
-        colaboración y determinación para enfrentar este emocionante proyecto.
-        Nuestro objetivo era crear nuestra primera página web, y aunque nos
-        enfrentamos a algunos desafíos, nunca nos rendimos. La mayoría de
-        nosotros somos nuevos en el mundo de la programación, pero eso no nos
-        detuvo. A lo largo del proyecto, hemos aprendido a comunicarnos de
-        manera efectiva, compartiendo ideas y resolviendo problemas juntos. Cada
-        uno aportó sus habilidades únicas y conocimientos, lo que enriqueció
-        nuestro trabajo y nos permitió superar obstáculos. A medida que
-        avanzábamos en el proyecto, descubrimos que, a pesar de nuestras
-        diferencias, todos compartimos una pasión por aprender y mejorar.
-        Aprendimos a utilizar nuevas herramientas y tecnologías, a escribir
-        código, a diseñar la interfaz y a poner en práctica conceptos de diseño
-        web. Si bien nuestro camino no siempre fue fácil, celebramos cada logro
-        y superamos cada obstáculo con determinación. Cada línea de código
-        escrita y cada pequeña victoria nos acercó más a nuestra meta de tener
-        nuestra primera página web en funcionamiento. Ahora, nos sentimos más
-        confiados y entusiasmados que nunca por seguir aprendiendo y mejorando
-        nuestras habilidades de programación. Nos damos cuenta de que ser
-        programadores es un viaje continuo de aprendizaje, y estamos emocionados
-        por lo que el futuro nos depara. Agradecemos esta oportunidad de
-        trabajar juntos como equipo y estamos seguros de que seguiremos
-        creciendo y desarrollándonos en el apasionante mundo de la programación.
-        ¡Estamos ansiosos por los próximos desafíos y proyectos que nos esperan!
-      </h3>
-      <br />
-      <h3>Para contactarnos,dejamos nuestros correos electrónicos:</h3>
-      <h3>
-        <ul>
-          <li>ferreyralautaro2003@gmail.com</li>
-          <li>camilabritezbritos@gmail.com</li>
-          <li>luk7_95@hotmail.com</li>
-          <li>D</li>
-          <li>E</li>
-          <li>F</li>
-          <li>G</li>
-          <li>H</li>
-        </ul>
-      </h3>
+    <div class="card rounded-3 col-12 col-md-4 col-lg-2 p-1">
+      <div class="rounded-3 text-center d-flex flex-column align-content-center align-items-center">
+        <div class="card-img-top mt-3 pt-1">
+          <img
+            src="{% static 'img/fotocami.jpg' %}"
+            width="150"
+            height="150"
+            alt=""
+            class="justify-self-center rounded-circle"
+          />
+        </div>
+        <div class="card-body">
+          <hr>
+          <a href="mailto:camilabritezbritos@gmail.com" style="cursor: pointer;text-decoration: none; color:black; font-weight: bold !important" class="fw-medium px-2">Camila Britez</a>
+          <hr class="w-100">
+          <a href="https://github.com/Camibrbr"><img src="https://cdn-icons-png.flaticon.com/256/25/25231.png" width="30"></a>
+          <a class="ms-3 me-2 pe-1" href="https://www.facebook.com/lautaro.ferreyra.779857"><img src="https://cdn.iconscout.com/icon/free/png-256/free-facebook-logo-2019-1597680-1350125.png" width="30"></a>
+          <a href="https://www.linkedin.com/in/camila-britez-a9a934181/?originalSubdomain=ar"><img src="https://cdn3.iconfinder.com/data/icons/sociocons/256/linkedin-sociocon.png" width="37"></a>
+        </div>
+      </div>
     </div>
-  </body>
-</html>
+    <div class="card rounded-3 col-12 col-md-4 col-lg-2 p-1">
+      <div class="rounded-3 text-center d-flex flex-column align-content-center align-items-center">
+        <div class="card-img-top mt-3 pt-1">
+          <img
+            src="{% static 'img/fotolucas.jpg' %}"
+            width="150"
+            height="150"
+            alt=""
+            class="justify-self-center rounded-circle"
+          />
+        </div>
+        <div class="card-body">
+          <hr>
+          <a href="mailto:luk7_95@hotmail.com" style="cursor: pointer;text-decoration: none; color:black; font-weight: bold !important" class="fw-medium px-2">Lucas González</a>
+          <hr class="w-100">
+          <a href="https://github.com/luqita73"><img src="https://cdn-icons-png.flaticon.com/256/25/25231.png" width="30"></a>
+          <a class="ms-3 me-2 pe-1" href="https://www.facebook.com/lucas.gonzalez.399"><img src="https://cdn.iconscout.com/icon/free/png-256/free-facebook-logo-2019-1597680-1350125.png" width="30"></a>
+          <a href="https://www.linkedin.com/in/lucastechnews/?originalSubdomain=ar"><img src="https://cdn3.iconfinder.com/data/icons/sociocons/256/linkedin-sociocon.png" width="37"></a>
+        </div>
+      </div>
+    </div>
+    <div class="card rounded-3 col-12 col-md-4 col-lg-2 p-1">
+      <div class="rounded-3 text-center d-flex flex-column align-content-center align-items-center">
+        <div class="card-img-top mt-3 pt-1 align-self-center">
+          <img
+            src="https://scontent.fcnq4-1.fna.fbcdn.net/v/t1.18169-9/10336806_10203483135585066_4501839366217087305_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=174925&_nc_ohc=lzSxW3pfG80AX9zpKfB&_nc_ht=scontent.fcnq4-1.fna&oh=00_AfAvU_r6P89dUZbQpFlxIaoi-AjHnj64tIhGkMTqvi1Isw&oe=64F322F3"
+            height="150"
+            alt=""
+            class="justify-self-center rounded-circle"
+          />
+        </div>
+        <div class="card-body">
+          <hr>
+          <a href="mailto:joaquin.cleva@gmail.com" style="cursor: pointer;text-decoration: none; color:black; font-weight: bold !important;" class="fw-medium px-2">Joaquín Cleva</a>
+          <hr class="w-100">
+          <a href="https://github.com/joaquincleva"><img src="https://cdn-icons-png.flaticon.com/256/25/25231.png" width="30"></a>
+          <a class="ms-3 me-2 pe-1" href="https://www.facebook.com/profile.php?id=100010511327819"><img src="https://cdn.iconscout.com/icon/free/png-256/free-facebook-logo-2019-1597680-1350125.png" width="30"></a>
+          <a href="https://www.linkedin.com/in/joaquin-marque-783565121/?originalSubdomain=ar"><img src="https://cdn3.iconfinder.com/data/icons/sociocons/256/linkedin-sociocon.png" width="37"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock contenido %}

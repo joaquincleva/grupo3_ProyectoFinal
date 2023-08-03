@@ -59,6 +59,8 @@ body::-webkit-scrollbar {
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
 .flip-card:hover .flip-card-inner {
+  width: 300px !important;
+  height: 300px !important;
   transform: rotateY(180deg) !important;
 }
 
@@ -74,7 +76,6 @@ body::-webkit-scrollbar {
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-  background-color: #bbb !important;
   color: black !important;
 }
 
@@ -103,4 +104,54 @@ body::-webkit-scrollbar {
 
 .custom-toggler .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 128, 0, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
+}
+
+.shadow-propio {
+  box-shadow: 3px 3px 5px 1px gray;
+}
+
+/* Estilo para el campo Título */
+#id_titulo,
+#id_first_name,
+#id_last_name,
+#id_username,
+#id_password1,
+#id_password2,
+#id_email {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+}
+
+#id_contenido, #id_texto {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+}
+
+#id_imagen {
+  width: 100%;
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#id_categoria {
+  width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  color: #333;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  width: auto !important;
+}
+
+#id_imagen::file-selector-button {
+  color: #333;
+  cursor: pointer;
 }

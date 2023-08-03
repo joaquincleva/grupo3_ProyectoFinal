@@ -18,14 +18,14 @@
 <div class="col-12 w-100 col-md-9 mb-5 mx-4 w-100 pe-5">
   <div class="row d-flex">
     {% for noticia in noticias %}
-    <div class="col-12 col-md-6 mt-3">
-      <div class="d-flex bg-white col-12 ms-3">
+    <div class="col-12 col-lg-6 mt-3">
+      <div class="d-flex bg-white col-12 ms-3 border shadow-propio">
         <img src="{{noticia.imagen.url}}" class="col-6" height="250px" />
         <div class="d-flex flex-column justify-content-between p-3 col-6">
           <span class="fs-6 text-secondary"
             >{{ noticia.fecha_modificacion }}</span
           >
-          <h4>{{ noticia.titulo }}</h4>
+          <h5>{{ noticia.titulo }}</h5>
           <p class="fs-6 text-secondary">
             {{ noticia.contenido | truncatechars:80 }}
           </p>
@@ -37,12 +37,12 @@
           {% if user.is_staff %}
           <div class="d-flex justify-content-end">
             <a
-              class="text-primary me-2 text-decoration-none"
+              class="text-primary me-2 text-decoration-none p-1"
               href="{% url 'noticias:editar_noticia' noticia.id %}"
               >Editar</a
             >
             <a
-              class="text-danger text-decoration-none"
+              class="text-danger text-decoration-none p-1"
               href="{% url 'noticias:eliminar_noticia' noticia.id %}"
               >Eliminar</a
             >
