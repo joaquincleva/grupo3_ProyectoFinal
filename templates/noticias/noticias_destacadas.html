@@ -25,7 +25,7 @@
           <span class="fs-6 text-secondary"
             >{{ noticia.fecha_modificacion }}</span
           >
-          <h5>{{ noticia.titulo }}</h5>
+          <h5>{{ noticia.titulo | truncatechars:38 }}</h5>
           <p class="fs-6 text-secondary">
             {{ noticia.contenido | truncatechars:80 }}
           </p>

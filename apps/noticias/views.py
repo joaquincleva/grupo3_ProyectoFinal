@@ -15,16 +15,6 @@ from django.contrib.admin.views.decorators import staff_member_required
 def catalogo(request):
     return render(request, 'noticias/catalogo.html')
 
-# def crear_noticia(request):
-#     if request.method == 'POST':
-#         form = NoticiaForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('hola')
-#     else:
-#         form = NoticiaForm()
-#     return render(request, 'noticias/crear_noticia.html', {'form': form})
-
 class crear_noticia(LoginRequiredMixin,UserPassesTestMixin,CreateView):
     model = Noticia
     form_class=Form_Alta
@@ -82,24 +72,10 @@ class Categorias(ListView):
     model = Categoria
     template_name = "noticias/listar_categorias.html"
 
-# def editar_noticia(request, noticia_id):
-#     noticia = get_object_or_404(Noticia, pk=noticia_id)
-
-#     if request.method == 'POST':
-#         form = NoticiaForm(request.POST, instance=noticia)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('hola')
-#     else:
-#         form = NoticiaForm(instance=noticia)
-
-#     return render(request, 'noticias/editar_noticia.html', {'form': form})
-
 class editar_noticia(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model = Noticia
     form_class = Form_Modificacion
     template_name = 'noticias/editar_noticia.html'
-    #success_url = reverse_lazy('noticias:lista_noticias')
     def get_success_url(self):
         return reverse_lazy('noticias:detalle_noticia',kwargs={'noticia_id': self.object.pk})
 

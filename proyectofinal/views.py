@@ -18,7 +18,6 @@ def Contacto(request):
         tipo_consulta = request.POST.get("tipo_consulta")
         mensaje = request.POST.get("mensaje")
 
-        # Enviar correo electrónico
         subject = f"Nuevo mensaje de contacto - {asunto}"
         message = f"Nombre: {nombre}\nTipo de consulta: {tipo_consulta}\nMensaje: {mensaje}"
         from_email = "grupoinformatorio@gmail.com"

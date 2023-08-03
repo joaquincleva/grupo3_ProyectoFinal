@@ -7,8 +7,6 @@ from django.urls import reverse_lazy
 
 from .forms import Form_Modificacion
 
-# Create your views here.
-
 def agregarComentario(request,noticia_id):
     comentario = request.POST.get("comentario", None)
     usuario = request.user
